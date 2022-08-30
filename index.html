@@ -12,9 +12,14 @@
     <div id="contenedor">
         <ol>
             <li v-for="item in chamacos">
-                {{ item }}
+                {{ item.name }} : <span> {{ item.role}}</span>
             </li>
         </ol>
+        <input type="text" v-model="chamaco_name" name="">
+        <input type="text" v-model="chamaco_role" name="">
+        <button @click="save">
+            Save chamaco
+        </button>
         <hr>
         <h1>
             {{name}}
@@ -52,12 +57,18 @@
             data(){
                 return {
                     name: 'Carlos',
+                    role: " ",
+                    chamaco_name: " ",
+                    chamaco_role: " ",
                     lastname: 'Meza',
                     numero1: 0,
                     numero2: 0,
                     resultado: 0,
                     age:0,
-                    chamacos:['Iran', 'Duarte', 'David']
+                    chamacos:[
+                        {name:'Iran', role:'backend'},
+                        {name:'Juan', role:'frontend'},
+                        {name:'Pedro', role:'movil'}]
                 }
             },
             methods: {
@@ -66,6 +77,9 @@
                 },
                 suma(){
                     this.resultado = this.numero1 + this.numero2
+                },
+                save(){
+                    this.chamacos.push({name: this.chamaco_name, role:this.chamaco_role});
                 }
             }
         }).mount('#contenedor')
