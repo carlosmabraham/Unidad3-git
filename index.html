@@ -8,6 +8,7 @@
     <script src="https://unpkg.com/vue@3"></script>
 </head>
 <body>
+    <!--Creamos el contenedor-->
     <div id="contenedor">
         <h1>
             {{name}}
@@ -15,6 +16,18 @@
         <h2>
             {{lastname}}
         </h2>
+        <input type="text" v-model="name" name="">
+        <button @click="hola">
+            Click me!
+        </button>
+        <hr>
+        <input type="number" v-model="numero1" name="">
+        <input type="number" v-model="numero2" name="">
+        <button @click="suma">Suma</button>
+        <h1>
+            {{resultado}}
+        </h1>
+        
     </div>
     <script type="text/javascript">
         //vincular vue con mi contenedor
@@ -24,7 +37,18 @@
             data(){
                 return {
                     name: 'Carlos',
-                    lastname: 'Meza'
+                    lastname: 'Meza',
+                    numero1: 0,
+                    numero2: 0,
+                    resultado: 0
+                }
+            },
+            methods: {
+                hola(){
+                    alert('hola ' + this.name)
+                },
+                suma(){
+                    this.resultado = this.numero1 + this.numero2
                 }
             }
         }).mount('#contenedor')
