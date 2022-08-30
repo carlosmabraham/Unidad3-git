@@ -10,6 +10,12 @@
 <body>
     <!--Creamos el contenedor-->
     <div id="contenedor">
+        <ol>
+            <li v-for="item in chamacos">
+                {{ item }}
+            </li>
+        </ol>
+        <hr>
         <h1>
             {{name}}
         </h1>
@@ -50,7 +56,8 @@
                     numero1: 0,
                     numero2: 0,
                     resultado: 0,
-                    age:0
+                    age:0,
+                    chamacos:['Iran', 'Duarte', 'David']
                 }
             },
             methods: {
