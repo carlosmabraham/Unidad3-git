@@ -1,2 +1,143 @@
-C:\xampp\htdocs\Unidad3\index.html
-C:\xampp\htdocs\Unidad3\users.json
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue js</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <!--Creamos el contenedor-->
+    <div id="contenedor">
+        <form>
+            <fieldset>
+                <legend>
+                    Acceso al panel
+                </legend>
+
+                <label>
+                    Correo electronico
+                </label>
+                <input type="email" v-model="email" name="">
+                <label>
+                    Password
+                </label>
+                <input type="password" v-model="password" name="">
+                <button @click="login">
+                    Acceder
+                </button>
+            </fieldset>
+        </form>
+        <!--
+        <ol>
+            <li v-for="item in chamacos">
+                {{ item.name }} : <span> {{ item.role}}</span>
+            </li>
+        </ol>
+        <input type="text" v-model="chamaco_name" name="">
+        <input type="text" v-model="chamaco_role" name="">
+        <button @click="save">
+            Save chamaco
+        </button>
+        <hr>
+        <h1>
+            {{name}}
+        </h1>
+        <h2>
+            {{lastname}}
+        </h2>
+        <input type="text" v-model="name" name="">
+        <button @click="hola">
+            Click me!
+        </button>
+        <hr>
+        <input type="number" v-model="numero1" name="">
+        <input type="number" v-model="numero2" name="">
+        <button @click="suma">Suma</button>
+        <h1>
+            {{resultado}}
+        </h1>
+        <hr>
+        <input type="text" v-model="age" name="">
+        
+        <h1 v-if="age < 18">
+            No pase
+        </h1>
+        <h1 v-else>
+            Pase
+        </h1>
+        -->
+    </div>
+    <script src="users.json"></script>
+    <script type="text/javascript">
+        //vincular vue con mi contenedor
+        const {createApp} = Vue;
+
+        const data = null;
+        const error = null;
+
+        
+        
+
+        createApp({
+            data(){
+                return {
+                    users:null,
+                    email:'',
+                    password:''
+                   /* name: 'Carlos',
+                    role: " ",
+                    chamaco_name: " ",
+                    chamaco_role: " ",
+                    lastname: 'Meza',
+                    numero1: 0,
+                    numero2: 0,
+                    resultado: 0,
+                    age:0,
+                    chamacos:[
+                        {name:'Iran', role:'backend'},
+                        {name:'Juan', role:'frontend'},
+                        {name:'Pedro', role:'movil'}]
+                        */
+                }
+            },
+            methods: {
+                login(e){
+                    e.preventDefault();
+
+                    var email_users = this.email
+                    var password_users = this.password
+
+                    var access = this.users.map(function(u){
+                        //console.log(u.email.toLowerCase())
+                        if (email_users === u.email.toLowerCase()){
+                            if(password_users === u.password){
+                                return true;
+                            }
+                        }
+                    })
+                    console.log(access)
+                }
+                /*
+                hola(){
+                    alert('hola ' + this.name)
+                },
+                suma(){
+                    this.resultado = this.numero1 + this.numero2
+                },
+                save(){
+                    this.chamacos.push({name: this.chamaco_name, role:this.chamaco_role});
+                }
+                */
+            },
+            mounted(){
+                fetch('users.json')
+                .then((res) => res.json())
+                .then((json) => (this.users = json))
+                .catch((err) => (console.log(err)))
+            }
+        }).mount('#contenedor')
+    </script>
+</body>
+</html>
