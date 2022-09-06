@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+     <!--Creamos el contenedor-->
+     <div id="contenedor">
+        <ol>
+            <li v-for="item in chamacos">
+                {{ item.name }} : <span> {{ item.role}}</span>
+            </li>
+        </ol>
+        <input type="text" v-model="chamaco_name" name="">
+        <input type="text" v-model="chamaco_role" name="">
+        <button @click="save">
+            Save chamaco
+        </button>
+    </div>
+    <script type="text/javascript">
+        //vincular vue con mi contenedor
+        const {createApp} = Vue;
+
+        createApp({
+            data(){
+                return {
+                    role: " ",
+                    chamaco_name: " ",
+                    chamaco_role: " ",
+                    chamacos:[
+                        {name:'Iran', role:'backend'},
+                        {name:'Juan', role:'frontend'},
+                        {name:'Pedro', role:'movil'}]
+                }
+            },
+            methods: {
+                save(){
+                    this.chamacos.push({name: this.chamaco_name, role:this.chamaco_role});
+                }
+            }
+        }).mount('#contenedor')
+    </script>
+</body>
+</html>
