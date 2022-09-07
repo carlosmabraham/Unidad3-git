@@ -60,11 +60,19 @@
                         //console.log(u.email.toLowerCase())
                         if (email_users === u.email){
                             if(password_users === u.password){
+                                alert("Acceso Permitido");
                                 return true;
                             }
                         }
                     })
+
                     console.log(access)
+
+                    if(access.include(true)){
+                        window.location.href = "crud.html";
+                    }else{
+                        alert("Los datos proporcionados no son correctos");
+                    }
                 }
             },
             mounted(){

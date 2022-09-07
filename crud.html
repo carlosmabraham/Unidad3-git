@@ -10,16 +10,16 @@
 <body>
      <!--Creamos el contenedor-->
      <div id="contenedor">
+        <input type="text" v-model="chamaco_name" name="">
+        <input type="text" v-model="chamaco_role" name=""><br>
+        <button @click="save">
+            Agregar usuario
+        </button>
         <ol>
             <li v-for="item in chamacos">
                 {{ item.name }} : <span> {{ item.role}}</span>
             </li>
         </ol>
-        <input type="text" v-model="chamaco_name" name="">
-        <input type="text" v-model="chamaco_role" name="">
-        <button @click="save">
-            Save chamaco
-        </button>
     </div>
     <script type="text/javascript">
         //vincular vue con mi contenedor
@@ -28,13 +28,19 @@
         createApp({
             data(){
                 return {
+                    user: " ",
+                    name: " ",
+                    email: " ",
                     role: " ",
                     chamaco_name: " ",
                     chamaco_role: " ",
                     chamacos:[
                         {name:'Iran', role:'backend'},
                         {name:'Juan', role:'frontend'},
-                        {name:'Pedro', role:'movil'}]
+                        {name:'Pedro', role:'movil'}],
+                    usuarios:[
+                        
+                    ]
                 }
             },
             methods: {
